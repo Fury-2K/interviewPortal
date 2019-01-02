@@ -10,19 +10,23 @@ var AnswerSchema = mongoose.Schema({
 		type: Number
 	},
 	viewCount: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	upvoteCount: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	downvoteCount: {
-		type: Number
+		type: Number,
+		default: 0
     },
     answer: {
         type: String
     },
     updateDate: {
-        type: Date
+		type: Date,
+		default: Date.now
     }
 }, {collection: 'answerData'});
 
@@ -30,11 +34,15 @@ AnswerSchema.plugin(autoIncrement.plugin, { model: 'Answer', field: 'aid' });
 
 var Answer = module.exports = mongoose.model('Answer', AnswerSchema);
 
+module.exports.createAnswer = function(newAnswer, callback){
+	newAnswer.save(callback);
+}
+
 module.exports.printAnswer = function(req, res, x) {
 	console.log("XX"+x);
-	var query = {qid: x};
-	Answer.find(query)
-      .then(function(doc) {
-        res.render('home', {items: doc});
-      });
+	// var query = {qid: x};
+	// Answer.find(query)
+    //   .then(function(doc) {
+    //     res.render('home', {items: doc});
+    //   });
 }

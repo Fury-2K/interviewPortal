@@ -8,8 +8,10 @@ var User = require('../models/user');
 var Question = require('../models/question');
 var Answer = require('../models/answer');
 var Reply = require('../models/reply');
+var temp;
+var tempQuestion;
 
-//start
+//index
 router.get('/index', function (req, res) {
 	res.render('index');
 	// Question.printQuestion(req, res);
@@ -23,6 +25,11 @@ router.get('/register', function (req, res) {
 // Login
 router.get('/login', function (req, res) {
 	res.render('login');
+});
+
+//home
+router.get('/home', ensureAuthenticated, function(req, res) {
+	Question.printMultipleQuestions(req, res);
 });
 
 // New Question
@@ -49,6 +56,35 @@ router.post('/ask', function (req, res) {
 			console.log(question);
 		});
 		req.flash('success_msg', 'Your question posted successfully');
+		res.redirect('/users/home');
+	}
+});
+
+// New Answer
+router.post('/answer', function (req, res) {
+	var ansContent = req.body.ansContent;
+
+	// Validation
+	req.checkBody('ansContent', 'Answer is required').notEmpty();
+
+	var errors = req.validationErrors();
+
+	if (errors) {
+		res.render('answer', {
+			errors: errors
+		});
+	}
+	else {
+		var newAnswer = new Answer({
+			authorid: req.user.uid,
+			qid: temp,
+			answer: ansContent
+		});
+		Answer.createAnswer(newAnswer, function (err, answer) {
+			if (err) throw err;
+			console.log(answer);
+		});
+		req.flash('success_msg', 'Your answer posted successfully');
 		res.redirect('/users/home');
 	}
 });
@@ -157,11 +193,6 @@ router.get('/logout', function (req, res) {
 	res.redirect('/users/login');
 });
 
-router.get('/home', ensureAuthenticated, function(req, res) {
-	Question.printQuestion(req, res, function(response) {
-		Answer.printAnswer(req, res, response.qid);
-	});
-});
 
 function ensureAuthenticated(req, res, next) {
 	if(req.isAuthenticated()) {
@@ -172,12 +203,25 @@ function ensureAuthenticated(req, res, next) {
 	}
 }
 
+router.get('/answer', ensureAuthenticated, function(req, res) {
+	Question.printQuestion(req, res, function(response) {
+		temp = response.qid;
+		console.log("ANS-"+temp);
+		Question.getQuestionByQid(temp,function(response1) {
+			tempQuestion = response1;
+			console.log("questiondata-"+tempQuestion);
+		});
+		// Answer.printAnswer(req, res, response.qid);
+	});
+	res.render('answer', {tempQuestion});
+});
+
 router.get('/ask', ensureAuthenticated, function(req, res) {
 	res.render('ask');
 });
 
-router.get('/answer', ensureAuthenticated, function(req, res) {
-	res.render('answer');
-});
+// router.get('/answer', ensureAuthenticated, function(req, res) {
+// 	res.render('answer');
+// });
 
 module.exports = router;

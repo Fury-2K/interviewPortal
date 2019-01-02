@@ -7,13 +7,13 @@
 <table border="0">
     <tr>
         <td>
-            <h4>{{this.content}}</h4>
+            <h4>{{tempQuestion.content}}</h4>
         </td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td>{{this.updateDate}}</td>
+        <td>{{tempQuestion.updateDate}}</td>
     </tr>
     <tr>
-        <td>AuthorID: {{ this.authorid }}</td>
+        <td>AuthorID: {{tempQuestion.authorid}}</td>
         <td></td>
         <td></td>
     </tr>
@@ -22,7 +22,7 @@
     <form method="post" action="/users/answer">
         <div class="form-group">
             {{!-- <label>Name</label> --}}
-            <textarea class="form-group" rows="4" cols="50" placeholder="Enter Answer" name="quesContent"></textarea>
+            <textarea class="form-group" rows="4" cols="50" placeholder="Enter Answer" name="ansContent"></textarea>
         </div>
         <br>
         <button type="submit" class="btn btn-default">Submit</button>
