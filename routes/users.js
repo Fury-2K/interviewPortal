@@ -8,7 +8,7 @@ var User = require('../models/user');
 var Question = require('../models/question');
 var Answer = require('../models/answer');
 var Reply = require('../models/reply');
-var temp;
+var tempQid;
 var tempQuestion;
 
 //index
@@ -204,16 +204,29 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/answer', ensureAuthenticated, function(req, res) {
-	Question.printQuestion(req, res, function(response) {
-		temp = response.qid;
-		console.log("ANS-"+temp);
-		Question.getQuestionByQid(temp,function(response1) {
-			tempQuestion = response1;
-			console.log("questiondata-"+tempQuestion);
-		});
-		// Answer.printAnswer(req, res, response.qid);
+	// Question.printQuestion(req, res, function(res) {
+	// 	temp = res.qid;
+	// 	//console.log("ANS-"+temp);
+	// 	console.log("1");
+	// 	Question.getQuestionByQid(req, res, temp, function(res) {
+	// 		tempQuestion = res;
+	// 		//console.log("questiondata-"+tempQuestion);
+	// 		console.log("2");
+	// 	});
+	// 	console.log("3");
+	// 	//response1.render('answer', {tempQuestion});
+	// 	// Answer.printAnswer(req, res, response.qid);
+	// });
+	// console.log("4");
+	// //res.render('answer', {items: tempQuestion});
+
+
+	Question.printQuestion(req, res, function(item) {
+		tempQid = item.qid;
+		tempQuestion = item.content;
+		console.log("xx"+tempQid+tempQuestion);
+		res.render('answer', {tempQuestion: tempQuestion});
 	});
-	res.render('answer', {tempQuestion});
 });
 
 router.get('/ask', ensureAuthenticated, function(req, res) {

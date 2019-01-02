@@ -42,12 +42,13 @@ module.exports.printMultipleQuestions = function(req, res) {
 	});
 }
 
-module.exports.getQuestionByQid = function(id, callback){
-	console.log("asdsa-"+id);
+module.exports.getQuestionByQid = function(req, res, id){//, callback){
+	//console.log("asdsa-"+id);
 	var query = {qid: id};
 	Question.findOne(query)
 	.then(function(doc) {
 		console.log("fghgf"+doc);
-		return callback(doc);
+	    res.render('answer', {tempQuestion: doc});
+		//return callback(doc);
 	});
 }
