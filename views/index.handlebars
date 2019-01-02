@@ -1,6 +1,15 @@
  <h2 class="page-header">Dashboard</h2>
-{{#each item}}
-<div>
-{{question.content}}
-</div>
-{{/each}}
+<table border="0">
+  {{# each items }}
+  <tr>
+    <td>
+        <h4>{{this.content}}</h4>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>AuthorID: {{ this.authorid }}</td>
+  </tr>
+  {{/each}}
+</table>

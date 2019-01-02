@@ -30,25 +30,23 @@ module.exports.printQuestion = function(req, res, callback) {
 	Question.findOne()
       .then(function(doc) {
 		//console.log("XX"+doc.qid);
-		res.render('home', {items: doc});
+		//res.render('home', {items: doc});
 		return callback(doc);
 	});
 }
 
-module.exports.printMultipleQuestions = function(req, res) {
+module.exports.printMultipleQuestions = function(req, res, callback) {
 	Question.find()
       .then(function(doc) {
-		res.render('home', {items: doc});
+		return callback(doc);
+		//res.render('home', {items: doc});
 	});
 }
 
-module.exports.getQuestionByQid = function(req, res, id){//, callback){
-	//console.log("asdsa-"+id);
+module.exports.getQuestionByQid = function(req, res, id, callback){
 	var query = {qid: id};
 	Question.findOne(query)
 	.then(function(doc) {
-		console.log("fghgf"+doc);
-	    res.render('answer', {tempQuestion: doc});
-		//return callback(doc);
+		return callback(doc);
 	});
 }

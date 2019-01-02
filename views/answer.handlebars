@@ -1,4 +1,4 @@
-<h1>Answer</h1>
+
 {{#if errors}}
 {{#each errors}}
 <div class="alert alert-danger">{{msg}}</div>
@@ -7,18 +7,25 @@
 <table border="0">
     <tr>
         <td>
-            <h4>{{tempQuestion.content}}</h4>
+            <h3>{{tempQuestion.content}}</h3>
         </td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td>{{tempQuestion.updateDate}}</td>
     </tr>
     <tr>
-        <td>AuthorID: {{tempQuestion.authorid}}</td>
+        <td></td>
         <td></td>
         <td></td>
     </tr>
 </table>
-
+<hr>
+{{#each ans}}
+<p>{{this.answer}}</p>
+<div>Upvote - {{this.upvoteCount}}</div>
+<div>Written on - {{this.updateDate}}</div>
+<div>AuthorID - {{this.authorid}}</div>
+<hr>
+{{/each}}
 <center>
     <form method="post" action="/users/answer">
         <div class="form-group">

@@ -6,7 +6,7 @@ UID: {{user.uid}}<br><br>
   {{# each items }}
   <tr>
     <td>
-      <a href="/users/answer">
+      <a href="/users/answer?id={{this.qid}}">
         <h4>{{this.content}}</h4>
       </a>
     </td>
