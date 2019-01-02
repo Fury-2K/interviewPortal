@@ -1,0 +1,17 @@
+<h2 class="page-header">Ask Question-</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<center>
+<form method="post" action="/users/ask">
+   <div class="form-group">
+    {{!-- <label>Name</label> --}}
+    <textarea class="form-group" rows="4" cols="50" placeholder="Enter Question" name="quesContent"></textarea>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-default">Ask</button>
+  <br>
+</form>
+</center>
