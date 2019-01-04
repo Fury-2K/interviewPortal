@@ -14,25 +14,28 @@ var tempQuestion;
 //index
 router.get('/index', function (req, res) {
 	Question.printMultipleQuestions(req, res, function(item) {
-		console.log()
-		res.render('index', {items: item});
+		Answer.printMultipleAnswers(req, res, function(item1) {
+			res.render('index', {layout: 'layout', items: item, ans: item1});
+		});
 	});
 });
 
 // Register
 router.get('/register', function (req, res) {
-	res.render('register');
+	res.render('register', {layout: 'layout'});
 });
 
 // Login
 router.get('/login', function (req, res) {
-	res.render('login');
+	res.render('login', {layout: 'layout'});
 });
 
 //home
 router.get('/home', ensureAuthenticated, function(req, res) {
 	Question.printMultipleQuestions(req, res, function(item) {
-		res.render('home', {items: item});
+		Answer.printMultipleAnswers(req, res, function(item1) {
+			res.render('home', {layout: 'layout', items: item, ans: item1});
+		});
 	});
 });
 
@@ -181,9 +184,7 @@ function ensureAuthenticated(req, res, next) {
 router.get('/answer', ensureAuthenticated, function(req, res) {	
 	tempQid = req.query.id;
 	Question.getQuestionByQid(req, res, tempQid, function(item) {
-		Answer.printAnswer(req, res, tempQid, function(item1) {
-			res.render('answer', {tempQuestion: item, ans: item1});
-		});
+		res.render('answer', {tempQuestion: item, layout: 'layout'});
 	});
 });
 
@@ -217,7 +218,7 @@ router.post('/answer', function (req, res) {
 });
 
 router.get('/ask', ensureAuthenticated, function(req, res) {
-	res.render('ask');
+	res.render('ask', {layout: 'layout'});
 });
 
 module.exports = router;

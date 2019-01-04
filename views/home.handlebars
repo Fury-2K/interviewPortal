@@ -1,20 +1,33 @@
-<!-- Middle Column -->
-User: {{user.name}}<br>
-Email: {{user.email}}<br>
-UID: {{user.uid}}<br><br>
-<table border="0">
-  {{# each items }}
-  <tr>
-    <td>
-      <a href="/users/answer?id={{this.qid}}">
-        <h4>{{this.content}}</h4>
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>AuthorID: {{ this.authorid }}</td>
-  </tr>
-  {{/each}}
-</table>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Home</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    {{#each items}}
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="/users/answer?id={{this.qid}}">
+                    <h3>
+                        {{this.content}}
+                    </h3>
+                </a>
+            </div> <!-- /.panel-heading -->
+            <div class="panel-body">
+            {{#each ../ans}}
+            {{#compare ../this.qid  this.qid}}
+                {{this.answer}}
+                <br>
+            {{/compare}}
+            {{/each}}
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    {{/each}}
+</div>
+<!-- /.row -->

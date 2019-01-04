@@ -17,16 +17,43 @@ var db = mongoose.connection;
 var connection = mongoose.createConnection("mongodb://localhost/quora_v2");
 autoIncrement.initialize(connection);
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 // Init App
 var app = express();
 
+//custom helper compare for comparing 2 values in handlebars
+const handlebars = exphbs.create({
+  helpers: {
+    extname: ".handlebars",
+    layout: "layout",
+    compare: function (lvalue, rvalue, options) {
+      //console.log("a= " + lvalue + " b= " + rvalue);
+      var operator = options.hash.operator || "==";
+      var operators = {
+        '==': function(l,r) { return l == r;},
+        '===': function(l,r) { return l === r;}
+      }
+      var result = operators[operator](lvalue, rvalue);
+      if (result) {
+        return options.fn(this);
+      }
+      else {
+        return options.inverse(this);
+      }
+    }
+  }
+});
+
 // View Engine
+//exphbs({ defaultLayout: 'layout' })
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', handlebars.engine);
+//app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
 app.set('view engine', 'handlebars');
+//app.engine(exphbs('handlebars', {defaultlayout: 'layout'}));
 
 // BodyParser Middleware
 app.use(bodyParser.json());
@@ -38,9 +65,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
 app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
 }));
 
 // Passport init
@@ -49,18 +76,18 @@ app.use(passport.session());
 
 // Express Validator
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
+  errorFormatter: function (param, msg, value) {
+    var namespace = param.split('.')
+      , root = namespace.shift()
       , formParam = root;
 
-    while(namespace.length) {
+    while (namespace.length) {
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param : formParam,
-      msg   : msg,
-      value : value
+      param: formParam,
+      msg: msg,
+      value: value
     };
   }
 }));
@@ -86,6 +113,6 @@ app.use('/users', users);
 // Set Port
 app.set('port', (process.env.PORT || 3000));
 
-app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
+app.listen(app.get('port'), function () {
+  console.log('Server started on port ' + app.get('port'));
 });

@@ -1,44 +1,49 @@
-<h2 class="page-header">Register</h2>
-{{#if user}}
-        <div class="alert alert-danger">Username has taken already try new</div> 
-{{/if}}
-{{#if mail}}
-        <div class="alert alert-danger">Email has taken already try new</div> 
-{{/if}} 
-{{#if errors}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto text-center">
+      <br><br>
+      {{#if user}}
+      <div class="alert alert-danger">Username has taken already try new</div>
+      {{/if}}
+      {{#if mail}}
+      <div class="alert alert-danger">Email has taken already try new</div>
+      {{/if}}
+      {{#if errors}}
       {{#each errors}}
-        <div class="alert alert-danger">{{msg}}</div>
+      <div class="alert alert-danger">{{msg}}</div>
       {{/each}}
-{{/if}}
-<center>
-<form method="post" action="/users/register">
-   <div class="form-group">
-    {{!-- <label>Name</label> --}}
-    <input type="text" class="form-control" placeholder="Name" name="name">
+      {{/if}}
+      <h2 class="text-white mb-5">Register</h2>
+      <form method="post" action="/users/register">
+        <div class="form-group">
+          <div class="form-group">
+            {{!-- <label>Name</label> --}}
+            <input type="text" class="form-control" placeholder="Name" name="name">
+          </div>
+          <br>
+          <div class="form-group">
+            {{!-- <label>Username</label> --}}
+            <input type="text" class="form-control" placeholder="Username" name="username">
+          </div>
+          <br>
+          <div class="form-group">
+            {{!-- <label>Email</label> --}}
+            <input type="email" class="form-control" placeholder="Email" name="email">
+          </div>
+          <br>
+          <div class="form-group">
+            {{!-- <label>Password</label> --}}
+            <input type="password" class="form-control" placeholder="Password" name="password">
+          </div>
+          <br>
+          <div class="form-group">
+            {{!-- <label>Confirm Password</label> --}}
+            <input type="password" class="form-control" placeholder="Confirm Password" name="password2">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary mx-auto">Register</button>
+          <br>
+      </form>
+    </div>
   </div>
-  <br>
-  <div class="form-group">
-    {{!-- <label>Username</label> --}}
-    <input type="text" class="form-control" placeholder="Username" name="username">
-  </div>
-  <br>
-  <div class="form-group">
-    {{!-- <label>Email</label> --}}
-    <input type="email" class="form-control" placeholder="Email" name="email">
-  </div>
-  <br>
-  <div class="form-group">
-    {{!-- <label>Password</label> --}}
-    <input type="password" class="form-control" placeholder="Password" name="password">
-  </div>
-  <br>
-  <div class="form-group">
-    {{!-- <label>Confirm Password</label> --}}
-    <input type="password" class="form-control" placeholder="Confirm Password" name="password2">
-  </div>
-  <br>
-  <button type="submit" class="btn btn-default">Submit</button>
-  <br>
-  
-</form>
-</center>
+</div>
