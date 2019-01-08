@@ -1,10 +1,10 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h1 class="page-header">Ask Question</h1>
-  </div>
-  <!-- /.col-lg-12 -->
-</div>
-<div class="row">
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">Ask Question</a>
+  </li>
+</ol>
+
+<div class="card mb-3">
   {{#if errors}}
   {{#each errors}}
   <div class="alert alert-danger">{{msg}}</div>
@@ -12,22 +12,72 @@
   {{/if}}
 </div>
 <!-- /.row -->
-<div class="row">
-  <div class="col-lg-8">
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="card mb-3">
+      <div class="card-body">
         <form method="post" action="/users/ask">
           <div class="form-group">
             {{!-- <label>Name</label> --}}
             <textarea class="form-control" rows="6" cols="121" placeholder="Enter Question" name="quesContent" style="resize: none;"></textarea>
+            <h3>Select topics-</h3>
+            <br>
+            <div class="col-lg-6">
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c1" value="1"> C-Programming
+              </div>
+              </label>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c2" value="2"> Data Structures
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c3" value="3"> .NET
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c4" value="4"> Software Testing
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c5" value="5"> Networking
+                </label>
+              </div>
+              </td>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c6" value="6"> Operating Systems
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c7" value="7"> Java
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c8" value="8"> DBMS
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="checkbox" name="c9" value="9"> UNIX
+                </label>
+              </div>
+            </div>
           </div>
-          <br>
-          <button type="submit" class="btn btn-primary mx-auto">Ask</button>
-          <br>
         </form>
+        <br><br>
       </div>
+      <br><br>
+      <div class="panel-body pull-right">
+        <button type="submit" class="btn btn-success btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>
+
       <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
-  </div>
-</div>

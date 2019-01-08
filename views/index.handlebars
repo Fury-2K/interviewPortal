@@ -1,33 +1,92 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Dashboard</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Topics</li>
+</ol>
 <!-- /.row -->
-<div class="row">
-    {{#each items}}
-    <div class="col-lg-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="/users/answer?id={{this.qid}}">
-                    <h3>
-                        {{this.content}}
-                    </h3>
-                </a>
-            </div> <!-- /.panel-heading -->
-            <div class="panel-body">
-            {{#each ../ans}}
-            {{#compare ../this.qid  this.qid}}
-                {{this.answer}}
-                <br>
-            {{/compare}}
-            {{/each}}
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    {{/each}}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic1">
+            <h4>
+                C-Programming
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
 </div>
+<!-- /.pan1el -->
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic2">
+            <h4>
+                Data Structures
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic3">
+            <h4>
+                .NET
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic4">
+            <h4>
+                Software Testing
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic5">
+            <h4>
+                Networking
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic6">
+            <h4>
+                Operating Systems (OS)
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic7">
+            <h4>
+                Java
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic8">
+            <h4>
+                Database Management (DBMS)
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="/users/topic9">
+            <h4>
+                UNIX
+            </h4>
+        </a>
+    </div> <!-- /.card-header -->
+</div>
+
 <!-- /.row -->

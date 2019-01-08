@@ -6,12 +6,15 @@ var AnswerSchema = mongoose.Schema({
 	authorid: {
 		type: Number
 	},
+	authorName: {
+		type: String
+	},
 	qid: {
 		type: Number
 	},
 	viewCount: {
 		type: Number,
-		default: 0
+		default: 1
 	},
 	upvoteCount: {
 		type: Number,
@@ -54,4 +57,34 @@ module.exports.printAnswer = function(req, res, x, callback) {
 		  //console.log(doc);
 	  return callback(doc);
       });
+}
+
+module.exports.upVote = function(req, res, x, callback) {
+	var query = {aid: x};
+	Answer.findOne(query)
+	.then(function(doc) {
+		doc.upvoteCount=doc.upvoteCount+1;
+		doc.save();
+		return callback(doc);
+	});
+}
+
+module.exports.downVote = function(req, res, x, callback) {
+	var query = {aid: x};
+	Answer.findOne(query)
+	.then(function(doc) {
+		doc.downvoteCount=doc.downvoteCount+1;
+		doc.save();
+		return callback(doc);
+	});
+}
+
+module.exports.viewed = function(req, res, x, callback) {
+	var query = {aid: x};
+	Answer.findOne(query)
+	.then(function(doc) {
+		doc.viewCount=doc.viewCount+1;
+		doc.save();
+		return callback(doc);
+	});
 }

@@ -1,7 +1,7 @@
 {
-  "name": "quora2.0",
+  "name": "InterviewPortal",
   "version": "1.0.0",
-  "description": "Simple authentication system",
+  "description": "Questionnaire for interviews",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

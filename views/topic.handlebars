@@ -1,0 +1,121 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">Home</a>
+  </li>
+  <li class="breadcrumb-item active">{{topic}}</li>
+</ol>
+
+    {{#each items}}
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <a href="/users/answer?id={{this.qid}}">
+                    <font size="5">
+                        <i class="glyphicon glyphicon-question-sign"></i> &nbsp;{{this.content}}
+                    </font>
+                </a>
+                <div class="pull-right text-muted">
+                    <i class="fa fa-clock-o fa-fw"></i>
+                    {{this.updateDate}}
+                </div>
+            </div> <!-- /.panel-heading -->
+            {{#if ../ans}}
+            <div class="card-body">
+                <ul class="chat">
+                    {{#each ../ans}}
+                    {{#compare ../this.qid this.qid}}
+                    <li class="left clearfix">
+                        <br>
+                        <span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font">
+                                    {{this.authorName}}
+                                </strong>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o fa-fw"></i> {{this.updateDate}}
+                                </small>
+                            </div>
+                            <br><br>
+                            <p>
+                                {{this.answer}}
+                            </p>
+                            
+                            {{!-- <div class="more"> --}}
+                                <br>
+                                <sub>{{this.viewCount}} views</sub> &nbsp;&nbsp;&nbsp;
+                                <sub>{{this.upvoteCount}} upvotes</sub> &nbsp;&nbsp;&nbsp;
+                                <sub>{{this.downvoteCount}} downvotes</sub>
+                                <br><br>
+                                <div class="pull-left">
+                                    <a href="/users/upvote?id={{this.aid}}&opt={{../../topicID}}" style="text-decoration: none;">
+                                        <button class="btn btn-success btn-sm" id="btn-chat">
+                                            Upvote
+                                        </button>
+                                    </a>
+                                    <a href="/users/downvote?id={{this.aid}}&opt={{../../topicID}} " style="text-decoration: none;">
+                                        <button class="btn btn-danger btn-sm" id="btn-chat">
+                                            Downvote
+                                        </button>
+                                    </a>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                
+                                <form method="post" action="/users/topic?id={{this.aid}}&opt={{../../topicID}}">
+                                    <div class="input-group">
+                                        <input type="text" id="btn-input" class="form-control input-sm" placeholder="Comment...."
+                                            name="comment">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-warning btn-sm" id="btn-chat" type="submit">
+                                                Comment
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br>
+                                <font size="2">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            Comments-
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="chat">
+                                                {{#each ../../comm}}
+                                                {{#compare this.aid ../this.aid}}
+                                                <li class="left clearfix">
+                                                    <br>
+                                                    <div class="header">
+                                                        <strong>
+                                                            &nbsp;&nbsp;{{this.authorName}}
+                                                        </strong>
+                                                        <small class="pull-right text-muted">
+                                                            <i class="fa fa-clock-o fa-fw"></i>
+                                                            {{this.updateDate}}
+                                                        </small>
+                                                    </div>
+                                                    <br>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;{{this.content}}
+                                                    </p>
+                                                </li>
+                                                {{/compare}}
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </font>
+                            {{!-- </div> --}}
+                        </div>
+                        <br>
+                    </li>
+                    {{/compare}}
+                    {{/each}}
+                </ul>
+            </div>
+            {{else}}
+            {{/if}}
+            <!-- /.panel -->
+        </div>
+
+    {{/each}}

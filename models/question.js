@@ -12,10 +12,10 @@ var QuestionSchema = mongoose.Schema({
     updateDate: {
 		type: Date,
 		default: Date.now
+	},
+	topic: {
+	 	type: [Number]
 	}
-	// topic: {
-	// 	type: Array[]
-	// }
 }, {collection: 'questionData'});
 
 QuestionSchema.plugin(autoIncrement.plugin, { model: 'Question', field: 'qid' });
@@ -26,11 +26,10 @@ module.exports.createQuestion = function(newQuestion, callback){
 	newQuestion.save(callback);
 }
 
-module.exports.printQuestion = function(req, res, callback) {
-	Question.findOne()
+module.exports.printQuestionsByTopic = function(req, res, x, callback) {
+	var query = {topic: x};
+	Question.find(query)
       .then(function(doc) {
-		//console.log("XX"+doc.qid);
-		//res.render('home', {items: doc});
 		return callback(doc);
 	});
 }
