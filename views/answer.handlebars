@@ -1,31 +1,38 @@
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="#">Answer Question</a>
-  </li>
+    <li class="breadcrumb-item">
+        <a href="#">Answer Question</a>
+    </li>
 </ol>
 
-<div class="card mb-3">
-    {{#if errors}}
-    {{#each errors}}
-    <div class="alert alert-danger">{{msg}}</div>
-    {{/each}}
-    {{/if}}
-</div>
+{{!-- <div class="card mb-3"> --}}
 
-        <div class="card mb-3">
-            <div class="card-heading">
-                <h3>{{tempQuestion.content}}</h3>
+    {{!-- </div> --}}
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        {{#if errors}}
+        {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+        {{/each}}
+        {{/if}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 name="ques">{{tempQuestion.content}}</h3>
             </div> <!-- /.panel-heading -->
-            <div class="card-body">
+            <div class="panel-body">
                 <form method="post" action="/users/answer">
                     <div class="form-group">
                         {{!-- <label>Name</label> --}}
                         <textarea class="form-control" rows="6" cols="121" placeholder="Answer" name="ansContent" style="resize: none;"></textarea>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-lg pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    <br>
                     <br>
                 </form>
             </div>
             <!-- /.panel-body -->
         </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>

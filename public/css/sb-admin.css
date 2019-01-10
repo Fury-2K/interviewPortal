@@ -16,6 +16,10 @@ body {
 #wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
+  /* background-image: url("bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed; */
   display: flex;
 }
 
@@ -366,9 +370,9 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   height: 300px;
   overflow-y: auto;
 }
-.chat12-panel{
-  /* height: 300px; */
-  /* overflow-y: scroll; */
+.chat-panel{
+  height: 300px; 
+  overflow-y: scroll;
 }
 footer.sticky-footer {
   display: -webkit-box;

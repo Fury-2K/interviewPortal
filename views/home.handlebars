@@ -5,87 +5,15 @@
     <li class="breadcrumb-item active">Topics</li>
 </ol>
 <!-- /.row -->
-
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic1">
-            <h4>
-                C-Programming
-            </h4>
+{{#if success_msg}}
+<div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+{{#each topic}}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/users/topic?id={{this.tid}}">
+            <h4>{{this.content}}</h4>
         </a>
-    </div> <!-- /.card-header -->
+    </div>
 </div>
-<!-- /.pan1el -->
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic2">
-            <h4>
-                Data Structures
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic3">
-            <h4>
-                .NET
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic4">
-            <h4>
-                Software Testing
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic5">
-            <h4>
-                Networking
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic6">
-            <h4>
-                Operating Systems (OS)
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic7">
-            <h4>
-                Java
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic8">
-            <h4>
-                Database Management (DBMS)
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<div class="card mb-3">
-    <div class="card-header">
-        <a href="/users/topic9">
-            <h4>
-                UNIX
-            </h4>
-        </a>
-    </div> <!-- /.card-header -->
-</div>
-<!-- /.row -->
+{{/each}}
