@@ -22,6 +22,7 @@ autoIncrement.initialize(connection);
 
 var routes = require("./routes/index");
 var users = require("./routes/users");
+var api = require("./routes/api");
 
 // Init App
 var app = express();
@@ -82,24 +83,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Express Validator
-// app.use(
-//   expressValidator({
-//     errorFormatter: function(param, msg, value) {
-//       var namespace = param.split("."),
-//         root = namespace.shift(),
-//         formParam = root;
+app.use(
+  expressValidator({
+    errorFormatter: {
+      function(param, msg, value) {
+        var namespace = param.split("."),
+          root = namespace.shift(),
+          formParam = root;
 
-//       while (namespace.length) {
-//         formParam += "[" + namespace.shift() + "]";
-//       }
-//       return {
-//         param: formParam,
-//         msg: msg,
-//         value: value
-//       };
-//     }
-//   })
-// );
+        while (namespace.length) {
+          formParam += "[" + namespace.shift() + "]";
+        }
+        return {
+          param: formParam,
+          msg: msg,
+          value: value
+        };
+      }
+    }
+  })
+);
 
 // Connect Flash
 app.use(flash());
@@ -118,6 +121,7 @@ app.use(function(req, res, next) {
 
 app.use("/", routes);
 app.use("/users", users);
+app.use("/api", api);
 
 // Set Port
 app.set("port", process.env.PORT || 3000);
